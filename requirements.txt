@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+docxtpl
+jinja2
+markdown
+weasyprint
+PyYAML
+python-multipart
+pydantic[email]
+sqlalchemy
+passlib[bcrypt]
+pyjwt
+python-dateutil

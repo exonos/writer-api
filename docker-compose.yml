@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  document-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: document-service
+    ports:
+      - "8007:8007"
+    volumes:
+      - ./:/app
+    environment:
+      - ENV=development

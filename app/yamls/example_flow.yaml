@@ -1,0 +1,12 @@
+template_name: "example_template.docx"  # Nombre de la plantilla en /templates
+parameters:
+  - name: nombre_usuario
+    type: string
+    required: true
+  - name: fecha
+    type: string
+    required: true
+  - name: direccion
+    type: string
+    required: false
+
