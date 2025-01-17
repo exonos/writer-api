@@ -1,5 +1,8 @@
-# Write API
-
+<h1 style="max-width: 42rem; margin-bottom: 1.5rem; font-size: 2.25rem; font-weight: 800; letter-spacing: -0.025em; line-height: 1; color: #1a202c;">
+    <span style="font-weight: 800;">
+        <p style="color: #3b82f6;">Writer<span style="color: #044080;">API</span></p>
+    </span>
+</h1>
 ## Overview
 The Write API is a lightweight and scalable microservice designed to streamline the massive generation of documents via API. This project addresses a key challenge in the legal contract signing process for products offered by Apimarket, providing a seamless, automated, and secure solution to generate massive docs.
 
@@ -21,7 +24,7 @@ The easiest and most reliable way to deploy the Write API is by using Docker. Fo
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-repo/write-api.git
+   git clone https://github.com/exonos/writer-api.git
    cd write-api
    ```
 
