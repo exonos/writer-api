@@ -1,0 +1,15 @@
+template_name: "CONTRATO_PRESTACION_SERVICIOS_DIGITALES_IDSE_PRO.docx"
+parameters:
+  - name: usuario
+    type: string
+    required: true
+  - name: fecha
+    type: string
+    required: true
+  - name: razon_social
+    type: string
+    required: true
+  - name: formato
+    type: string
+    required: false
+

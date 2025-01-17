@@ -14,7 +14,9 @@ from .auth.services import (
     UserLogin
 )
 from .auth.models import User
-from .models.document import Document
+from .auth.document import Document
+
+
 from .services.generator import (
     get_template_parameters,
     generate_document
@@ -31,6 +33,9 @@ def get_db():
     finally:
         db.close()
 
+@app.get("/")
+def read_root(db: Session = Depends(get_db)):
+    return {"message": "¡Bienvenido a tu servicio de generación de documentos!"}
 
 # ---------------------------
 # Auth endpoints
@@ -64,14 +69,18 @@ def login(user_data: UserLogin, db: Session = Depends(get_db)):
 async def upload_template(
     template_id: str = Form(...),
     file: UploadFile = File(...),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
 ):
+
     """
     Sube un archivo YAML y lo guarda con el nombre `{template_id}.yaml`.
     """
     # Ajusta la ruta a tu carpeta de YAML
     import os
 
-    YAML_PATH = "yamls"  # Si está en la raíz de tu proyecto
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Ruta absoluta de `main.py`
+    YAML_PATH = os.path.join(BASE_DIR, "yamls")  # Define la carpeta `app/yamls
     if not os.path.exists(YAML_PATH):
         os.makedirs(YAML_PATH)
 
@@ -87,7 +96,11 @@ async def upload_template(
 
 
 @app.get("/document-templates/{template_id}/parameters")
-def read_template_parameters(template_id: str):
+def read_template_parameters(
+    template_id: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
     """
     Retorna la lista de parámetros que se requieren
     para generar el documento (definidos en el archivo YAML).
@@ -116,7 +129,7 @@ def generate_doc(
             request_data=request_data,
             db=db,
             current_user_id=current_user.id,
-            is_public=False  # o True si deseas permitir
+            is_public=False
         )
         return {
             "message": "Documento generado con éxito",

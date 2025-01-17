@@ -1,4 +1,4 @@
-# app/models/document.py
+# app/auth/document.py
 
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, DateTime
 from sqlalchemy.orm import relationship

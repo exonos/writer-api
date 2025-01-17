@@ -1,0 +1,525 @@
+{
+	"info": {
+		"_postman_id": "05aa877a-414d-4e03-80cf-fa25c838321f",
+		"name": "Writer API",
+		"description": "The **Write API** is a lightweight and scalable microservice designed to streamline the **massive generation of documents via API**. This project addresses a key challenge in the **legal contract signing process for products offered by Apimarket**, providing a seamless, automated, and secure solution.\n\nBuilt with cutting-edge technologies, the Write API leverages:\n\n- **Python**: To power document generation, parsing, API logic, and secure authentication processes.\n    \n- **Jinja2**: For efficient variable injection and rendering in document templates, enabling high customization.\n    \n- **YAML**: To define document logic, structure, and validation rules in a clear and human-readable format.\n    \n\nThe service has been crafted without a graphical user interface (GUI) to maintain its lightweight architecture and high customizability. It runs in **Docker containers**, ensuring portability, scalability, and ease of deployment in diverse environments.\n\nWith its minimal design and powerful capabilities, the Write API offers a flexible and efficient way to automate the creation of contracts and other documents, ensuring consistency, accuracy, and compliance across large-scale operations.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8823093"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Create Account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"email\": \"hh.abdiel@gmail.com\",\n    \"password\": \"@Charlie14\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8007/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8007",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Welcome Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"email\": \"hh.abdiel@gmail.com\",\n    \"password\": \"@Charlie14\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8007/auth/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8007",
+									"path": [
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Fri, 17 Jan 2025 01:46:12 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "38"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"email\": \"hh.abdiel@gmail.com\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"access_token\", pm.response.json().access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"exonhos@gmail.com\",\n    \"password\": \"@Charlie14\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8007/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8007",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Account Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"hh.abdiel@gmail.com\",\n    \"password\": \"@Charlie14\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8007/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8007",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Fri, 17 Jan 2025 01:49:11 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "160"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzM3MDgyMTUyfQ.npKWMwxXmg5SGvbXrWvuc77uE-7bAYLSVGAuXA03xgc\",\n    \"token_type\": \"bearer\"\n}"
+						}
+					]
+				}
+			],
+			"description": "### Authentication in Write API\n\nThe **Write API** uses a secure token-based authentication system to protect its endpoints and ensure only authorized users can access its features. Below is a detailed explanation of how authentication works and how to interact with the API.\n\n### Authentication Mechanism\n\nTo authenticate with the Write API, include a **bearer token** in the `Authorization` header of your HTTP requests. This token verifies your identity and grants access to the API based on your assigned permissions.\n\n#### Header Example:\n\n```\nAuthorization: Bearer <your_api_token>\n\n ```\n\n#### Example Using `curl`:\n\n```\ncurl -H \"Authorization: Bearer H3PLMKJKIVATLDPWHJH3AGWEJPFU5GRT\" \\\n  http://localhost/document-templates/contrato_idse_pro/parameters\n\n ```\n\n#### Example Using Python:\n\n``` python\nimport requests\nheaders = {'Authorization': 'Bearer H3PLMKJKIVATLDPWHJH3AGWEJPFU5GRT'}\nresponse = requests.get(\n    'http://localhost/document-templates/{template_id}/parameters',\n    headers=headers\n)\nif response.status_code == 200:\n    print(response.json())\nelse:\n    print(f\"Error: {response.text}\")\n\n ```\n\n**Note**: Bearer tokens often expire after a set period. Ensure you handle token expiration appropriately by requesting a new token or refreshing it if your token management system supports it.\n\n---\n\n### API Responses\n\nMost API endpoints return responses in **JSON format**. For example, calling the endpoint `/document-templates/contrato_idse_pro/parameters` might return:\n\n``` json\n[\n    {\n        \"name\": \"usuario\",\n        \"type\": \"string\",\n        \"required\": true\n    },\n    {\n        \"name\": \"fecha\",\n        \"type\": \"string\",\n        \"required\": true\n    },\n    {\n        \"name\": \"razon_social\",\n        \"type\": \"string\",\n        \"required\": true\n    }\n]\n\n ```\n\nThese responses provide all necessary information about required parameters, their types, and validation rules.\n\n---\n\n### Making POST Requests\n\nWhen calling POST endpoints, you must provide the required parameters in the **body** of the request. The recommended format is **JSON**, which simplifies the process of sending complex data structures.\n\n#### Example POST Request Using `curl`:\n\n```\ncurl --location 'http://localhost:8007/document-templates/{template_id}/generate' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyIiwiZXhwIjoxNzM3MDkxNjU3fQ.Q5KxltB8kr5zvDCffw-hD4fK8MCzOvSGJmGZR792nC0' \\\n--data '{\n  \"usuario\": \"Juan Pérez\",\n  \"razon_social\": \"COCA COLA COMPANY S.A. DE C.V.\",\n  \"fecha\": \"Jueves, 16 de enero de 2025\"\n}'\n\n ```\n\n#### Example POST Request Using Python:\n\n``` python\nimport requests\nurl = 'http://localhost:8007/document-templates/{template_id}/generate'\nheaders = {\n    'Content-Type': 'application/json',\n    &#x27;Authorization&#x27;: &#x27;Bearer <your_api_token>&#x27;\n}\ndata = {\n    \"usuario\": \"Juan Pérez\",\n    \"razon_social\": \"COCA COLA COMPANY S.A. DE C.V.\",\n    \"fecha\": \"Jueves, 16 de enero de 2025\"\n}\nresponse = requests.post(url, headers=headers, json=data)\nprint(response.json())\n\n ```\n\n#### Special Case: File Uploads\n\nIf your POST request includes file uploads, you must use the `multipart/form-data` format instead of JSON:\n\n```\ncurl --location 'http://localhost:8007/upload' \\\n--header &#x27;Authorization: Bearer <your_api_token>&#x27; \\\n--form 'file=@/path/to/your/template.yaml'\n\n ```\n\nBy following these practices, you can securely interact with the Write API and integrate it seamlessly into your workflows."
+		},
+		{
+			"name": "Parameters",
+			"item": [
+				{
+					"name": "Get Parameters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8007/document-templates/contrato_idse_pro/parameters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8007",
+							"path": [
+								"document-templates",
+								"contrato_idse_pro",
+								"parameters"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Parameters",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8007/document-templates/mi_primer_templates/parameters",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8007",
+									"path": [
+										"document-templates",
+										"mi_primer_templates",
+										"parameters"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Fri, 17 Jan 2025 02:06:01 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "162"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"name\": \"nombre_usuario\",\n        \"type\": \"string\",\n        \"required\": true\n    },\n    {\n        \"name\": \"fecha\",\n        \"type\": \"string\",\n        \"required\": true\n    },\n    {\n        \"name\": \"direccion\",\n        \"type\": \"string\",\n        \"required\": false\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Cargar plantilla",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "template_id",
+									"value": "mi_primer_templates",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/exonhos/PhpstormProjects/writer/app/yamls/example_flow.yaml"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8007/document-templates",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8007",
+							"path": [
+								"document-templates"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Cargar plantilla",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "template_id",
+											"value": "mi_primer_templates",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/exonhos/PhpstormProjects/writer/app/yamls/example_flow.yaml"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8007/document-templates",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8007",
+									"path": [
+										"document-templates"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Fri, 17 Jan 2025 02:05:43 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "content-length",
+									"value": "59"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"YAML 'mi_primer_templates' subido con éxito.\"\n}"
+						}
+					]
+				}
+			],
+			"description": "The **Parameters Section** of the Write API provides essential details about the inputs required for various operations. Parameters define the structure, validation rules, and expected data types for each endpoint, ensuring accurate and seamless execution of API calls.\n\n- **Structure Definition**: Parameters are dynamically defined in YAML templates, making them highly customizable for different use cases. Each parameter specifies:\n    \n    - `name`: The name of the parameter.\n        \n    - `type`: The expected data type (e.g., `string`, `int`, `date`, etc.).\n        \n    - `required`: Whether the parameter is mandatory or optional.\n        \n- **Validation**: The API enforces strict validation rules based on the parameter definitions in the templates, ensuring data consistency and preventing invalid inputs.\n    \n- **Ease of Access**: Use endpoints like `/parameters` to retrieve detailed information about the required parameters for specific templates. This feature enhances the API's usability by guiding users in preparing valid input data.\n    \n\nFor example, calling the `/parameters` endpoint might return:\n\n``` json\n[\n    {\n        \"name\": \"usuario\",\n        \"type\": \"string\",\n        \"required\": true\n    },\n    {\n        \"name\": \"fecha\",\n        \"type\": \"date\",\n        \"required\": true\n    }\n]\n\n ```\n\nBy providing a clear and structured parameter definition, the Write API ensures robust integration and error-free execution for all users."
+		},
+		{
+			"name": "Document Generation",
+			"item": [
+				{
+					"name": "Generate Document",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"usuario\": \"Juan Pérez\",\n  \"razon_social\": \"COCA COLA COMPANY S.A. DE C.V.\",\n  \"fecha\": \"Jueves, 16 de enero de 2025\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8007/document-templates/contrato_idse_pro/generate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8007",
+							"path": [
+								"document-templates",
+								"contrato_idse_pro",
+								"generate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Not authenticated",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nombre_usuario\": \"Juan Pérez\",\n  \"direccion\": \"Calle Falsa 123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8007/document-templates/mi_primer_templates/generate",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8007",
+									"path": [
+										"document-templates",
+										"mi_primer_templates",
+										"generate"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "date",
+									"value": "Fri, 17 Jan 2025 02:06:49 GMT"
+								},
+								{
+									"key": "server",
+									"value": "uvicorn"
+								},
+								{
+									"key": "www-authenticate",
+									"value": "Bearer"
+								},
+								{
+									"key": "content-length",
+									"value": "30"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"detail\": \"Not authenticated\"\n}"
+						}
+					]
+				}
+			],
+			"description": "The **Document Generation Section** of the Write API is the core functionality, allowing users to create highly customized documents from predefined templates. This feature is designed for efficiency, scalability, and flexibility in handling complex workflows, such as legal contract generation.\n\n- **Template-Based Design**: Documents are generated using templates defined in `.docx`, `.md`, or `.html` formats. Templates leverage **Jinja2** to dynamically inject user-provided variables into the document.\n    \n- **YAML Configuration**: Each template is associated with a YAML file that defines the template's logic, required parameters, and validation rules. This approach ensures consistency and minimizes errors during document creation.\n    \n- **Output Formats**: The API supports generating documents in multiple formats, including:\n    \n    - **DOCX**: The default format, ideal for further editing.\n        \n    - **PDF**: For finalized, non-editable documents.\n        \n    - **HTML**: When a web-based format is required.\n        \n- **Massive Document Generation**: The system is optimized for large-scale operations, enabling users to generate thousands of documents efficiently by providing the necessary input data programmatically.\n    \n\nBy combining the power of templates, YAML configurations, and dynamic inputs, the Write API simplifies the generation of customized documents, making it an indispensable tool for automation and scalability."
+		},
+		{
+			"name": "Welcome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8007",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8007"
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
