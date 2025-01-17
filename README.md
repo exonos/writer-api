@@ -196,5 +196,23 @@ For questions, feel free to create an issue in the repository.
 
 ---
 
+## Security Vulnerabilities
+
+If you discover a security vulnerability in Livewirestack, please help us maintain the security of this project by responsibly disclosing it to us. To report a security vulnerability, please send an email to [hh.abdiel@gmail.com](mailto:hh.abdiel@gmail.com). We'll address the issue as promptly as possible.
+
+## Credits
+
+- [Abdiel Hernandez](https://github.com/exonos)
+
+## Support My Work
+
+If you find Livewirestack helpful and would like to support my work, you can buy me a coffee. Your support will help keep this project alive and thriving. It's a small token of appreciation that goes a long way.
+
+[![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/default-orange.png)](https://buymeacoffee.com/exonos)
+
 ## License
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+<br />
+<p align="center"> <b>Made with ❤️ from Mexico</b> </p>
